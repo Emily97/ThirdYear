@@ -1,0 +1,49 @@
+<html lang="en">
+	<title>First D3 webpage</title>
+	<head>
+	<meta charset="utf-8">
+		<script src="javascript/d3.js"></script>
+        <script src="javascript/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<h1>D3 Installed</h1>
+
+			<script type="text/javascript">
+                var dataset = [];
+                
+                for(var i = 0; i < 9; i++){
+                    var newNumber = Math.round(Math.random()*40);
+                    dataset.push(newNumber);
+                }
+                
+                var h = 200;
+                var w = 1000;
+                var p = 0;
+                var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+                
+                var circle = svg.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle");
+                
+                circle.attr("cx", function(d,i){
+//                    return(i*40) + 100;
+                    p += d*2;
+                    return p - d;
+                })
+                    .attr("cy", h/2)
+                    .attr("r", function(d){
+                          return d;
+                          })
+                    .attr("class", "circle");
+//                    .attr("stroke-width", function(d){ 
+//                        return d/2;
+//                    })
+            </script>
+                
+	</body>
+</html>
